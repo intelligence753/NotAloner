@@ -1,0 +1,107 @@
+$pink: #e85377;
+$brown: #b2a694;
+$brown_d: #93897a;
+$grey: #343434;
+$blue: #84cabf;
+$blue_d: #19365d;
+
+$b:#0367A6;
+$b2:#0378A6;
+$b3:#049DBF;
+$o:#F27329;
+$o2:#F2CCB6;
+$y:#F2B705;
+$r:#D95E52;
+
+$headH-pc: 100px;
+$headH-mo: 70px;
+$font-family: "Nunito", "Noto Sans TC", sans-serif;
+//-------------------------font-------------------------//
+
+// 字型大小顏色
+@mixin font-color($color, $weight: 400, $lh: 1.5) {
+    color: $color;
+    font-weight: $weight;
+    line-height: $lh;
+}
+//px轉rem
+@function pxToEm($px, $base: 16) {
+    @return ($px / $base) * 1rem;
+}
+@function pxToRem($px, $base: 16) {
+    @return ($px / $base) * 1rem;
+}
+
+$xxl: 1440px;
+$xl: 1200px;
+$lg: 991px;
+$md: 769px;
+$sm: 576px;
+$xs: 320px;
+
+//用法 @include font-size(pxToEm(16),pxToEm(36));
+@mixin font-size($mobile, $desk, $scale: 1) {
+    @media (max-width: 1440px) {
+        font-size: $desk * $scale;
+    }
+    @media (max-width: 767px) {
+        font-size: $mobile;
+    }
+    @media (min-width: 1441px) {
+        font-size: $desk;
+    }
+}
+// //字體
+// @for $sizes from 1 through 100 {
+//     @each $size in $sizes {
+//         .f#{$size} {
+//             font-size: pxToEm($size);
+//         }
+//     }
+// }
+// 行高
+@mixin line-height($mobile, $desk) {
+    line-height: $desk;
+    @media (max-width: 767px) {
+        line-height: $mobile;
+    }
+}
+// 行距
+@mixin letter-spacing($mobile, $desk) {
+    letter-spacing: $desk + em;
+    @media (max-width: 767px) {
+        letter-spacing: $mobile + em;
+    }
+}
+//------------------------- 限定行數  行高 行數(行高x行數)x1rem ---------//
+
+// @mixin clamp($clamp) {
+//     @media (min-width: 768px) {
+//         overflow: hidden;
+//         text-overflow: ellipsis;
+//         display: -webkit-box;
+//         -webkit-line-clamp: $clamp;
+//         -webkit-box-orient: vertical;
+//         white-space: normal;
+//     }
+// }
+@mixin clamp($lh, $clamp) {
+    min-height: ($lh * $clamp) * 1em;
+    line-height: $lh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $clamp; /* 第幾行要顯示點點點 */
+    -webkit-box-orient: vertical;
+}
+
+@mixin sp-header {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+@mixin pc-header {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}

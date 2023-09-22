@@ -1,0 +1,50 @@
+@import "./main";
+.form_section {
+    @include sp-header {
+        margin-top: 42px;
+        margin-bottom: 42.67vw;
+    }
+    @include pc-header {
+        margin-top: 90px;
+        margin-bottom: 300px;
+    }
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        @media (max-width: 991px) {
+            flex-direction: column;
+        }
+        .form-group {
+            width: 47.5%;
+            @media (max-width: 991px) {
+                width: 100%;
+            }
+            &.w100 {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+                margin-bottom: 0px;
+                a {
+                    color: $pink;
+                    text-decoration: underline;
+                    text-underline-offset: 10px;
+                    @include pc-header {
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+        .btnwrap {
+            width: 100%;
+            text-align: center;
+            margin-top: 45px;
+            .btn {
+                padding: 13px 70px;
+            }
+        }
+    }
+}
